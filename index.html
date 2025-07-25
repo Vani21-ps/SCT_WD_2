@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-b from-sky-300 to-sky-100 min-h-screen transition-all duration-1000 overflow-hidden relative">
+    <!-- Background elements -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    
+    <!-- Constellations -->
+    <div class="constellation big-dipper">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    
+    <div class="constellation orion">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    
+    <div class="constellation cassiopeia">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    
+    <!-- Drifting stars -->
+    <div class="drifting-star" style="top: 15%; animation-duration: 12s;"></div>
+    <div class="drifting-star" style="top: 25%; animation-duration: 15s;"></div>
+    <div class="drifting-star" style="top: 35%; animation-duration: 18s;"></div>
+    <div class="drifting-star" style="top: 45%; animation-duration: 14s;"></div>
+    <div class="drifting-star" style="top: 55%; animation-duration: 16s;"></div>
+    <div class="drifting-star" style="top: 65%; animation-duration: 20s;"></div>
+    <div class="drifting-star" style="top: 75%; animation-duration: 13s;"></div>
+    <div class="drifting-star" style="top: 85%; animation-duration: 17s;"></div>
+    
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col items-center justify-center">
+            <!-- Calculator Main Section -->
+            <div class="w-full max-w-md flex flex-col items-center mb-6">
+                <div class="mb-4 flex justify-between w-full">
+                    <h1 class="text-3xl font-bold calculator-heading">Cosmic Calculator</h1>
+                    <div class="flex gap-2">
+                        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-300 transition-all">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:block"></i>
+                        </button>
+                        <button id="scientific-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-300 transition-all">
+                            <i class="fas fa-flask"></i>
+                        </button>
+                        <button id="history-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-300 transition-all">
+                            <i class="fas fa-history"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Calculator Display -->
+                <div class="calculator-container w-full rounded-2xl p-6 mb-6">
+                    <div class="mb-4">
+                        <div id="history-display" class="text-right text-sm text-gray-600 dark:text-gray-300 h-6 mb-1"></div>
+                        <div id="display" class="display text-right text-gray-800 dark:text-white overflow-x-auto whitespace-nowrap"></div>
+                    </div>
+                    
+                    <!-- Calculator Buttons -->
+                    <div class="grid grid-cols-5 gap-2">
+                        <!-- Memory Buttons -->
+                        <button class="col-span-1 bg-purple-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="memory-clear">MC</button>
+                        <button class="col-span-1 bg-purple-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="memory-recall">MR</button>
+                        <button class="col-span-1 bg-purple-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="memory-add">M+</button>
+                        <button class="col-span-1 bg-purple-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="memory-subtract">M-</button>
+                        <button class="col-span-1 bg-red-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="clear">C</button>
+                        
+                        <!-- Scientific Mode Buttons -->
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="square">x²</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="sqrt">√</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="power">x^y</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="modulo">%</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="backspace">⌫</button>
+                        
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="sin">sin</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="cos">cos</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="tan">tan</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="pi">π</button>
+                        <button class="col-span-1 bg-blue-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="operator" data-value="+">+</button>
+                        
+                        <!-- Number Buttons -->
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="7">7</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="8">8</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="9">9</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="factorial">x!</button>
+                        <button class="col-span-1 bg-blue-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="operator" data-value="-">-</button>
+                        
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="4">4</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="5">5</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="6">6</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="log">log</button>
+                        <button class="col-span-1 bg-blue-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="operator" data-value="×">×</button>
+                        
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="1">1</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="2">2</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="3">3</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="ln">ln</button>
+                        <button class="col-span-1 bg-blue-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="operator" data-value="÷">÷</button>
+                        
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="number" data-value="0">0</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="decimal">.</button>
+                        <button class="col-span-1 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg p-3 btn-hover btn-active" data-action="negate">+/-</button>
+                        <button class="col-span-1 bg-indigo-500 text-white rounded-lg p-3 btn-hover btn-active scientific-btn hidden" data-action="e">e</button>
+                        <button class="col-span-1 bg-green-500 text-white rounded-lg p-3 btn-hover btn-active" data-action="equals">=</button>
+                    </div>
+                </div>
+                
+                <!-- Keyboard Shortcuts Info -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg max-w-md w-full">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold text-gray-700 dark:text-white">Keyboard Shortcuts</h3>
+                        <button id="close-shortcuts" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-sm">
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">0-9</span> <span class="text-gray-600 dark:text-gray-300">Numbers</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">+/-</span> <span class="text-gray-600 dark:text-gray-300">Negate</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">.</span> <span class="text-gray-600 dark:text-gray-300">Decimal</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">Enter</span> <span class="text-gray-600 dark:text-gray-300">Equals</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">Backspace</span> <span class="text-gray-600 dark:text-gray-300">Delete</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">Esc</span> <span class="text-gray-600 dark:text-gray-300">Clear</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">a</span> <span class="text-gray-600 dark:text-gray-300">Add (+)</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">s</span> <span class="text-gray-600 dark:text-gray-300">Subtract (-)</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">m</span> <span class="text-gray-600 dark:text-gray-300">Multiply (×)</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">d</span> <span class="text-gray-600 dark:text-gray-300">Divide (÷)</span></div>
+                        <div class="flex items-center"><span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">f</span> <span class="text-gray-600 dark:text-gray-300">Functions</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- History Panel - Now positioned below calculator -->
+            <div id="history-panel" class="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white">Calculation History</h2>
+                    <button id="clear-history" class="text-sm bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors">
+                        Clear History
+                    </button>
+                </div>
+                <div id="history-list" class="space-y-2 max-h-96 overflow-y-auto">
+                    <!-- History items will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+       
+</body>
+</html>

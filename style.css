@@ -1,0 +1,236 @@
+ /* Custom animations and styles */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes drift {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+        
+        /* Custom Cloud Shapes */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+        
+        .cloud1 { width: 120px; height: 60px; top: 15%; animation-delay: 0s; }
+        .cloud1:before { width: 70px; height: 70px; top: -30px; left: 20px; }
+        .cloud1:after { width: 60px; height: 60px; top: -20px; left: 70px; }
+        
+        .cloud2 { width: 180px; height: 80px; top: 30%; animation-delay: 2s; }
+        .cloud2:before { width: 90px; height: 90px; top: -40px; left: 30px; }
+        .cloud2:after { width: 80px; height: 80px; top: -30px; left: 100px; }
+        
+        .cloud3 { width: 100px; height: 50px; top: 60%; animation-delay: 4s; }
+        .cloud3:before { width: 60px; height: 60px; top: -25px; left: 15px; }
+        .cloud3:after { width: 50px; height: 50px; top: -15px; left: 60px; }
+        
+        /* Custom Constellation Shapes */
+        .constellation {
+            position: absolute;
+            opacity: 0.6;
+        }
+        
+        .constellation .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.8);
+        }
+        
+        .dark .constellation .star {
+            background: #FFD700;
+            box-shadow: 0 0 5px 1px rgba(255, 215, 0, 0.8);
+        }
+        
+        /* Big Dipper Constellation */
+        .big-dipper {
+            width: 150px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+        }
+        
+        .big-dipper .star:nth-child(1) { top: 0; left: 0; }
+        .big-dipper .star:nth-child(2) { top: 15px; left: 25px; }
+        .big-dipper .star:nth-child(3) { top: 30px; left: 50px; }
+        .big-dipper .star:nth-child(4) { top: 45px; left: 75px; }
+        .big-dipper .star:nth-child(5) { top: 60px; left: 100px; }
+        .big-dipper .star:nth-child(6) { top: 45px; left: 125px; }
+        .big-dipper .star:nth-child(7) { top: 30px; left: 140px; }
+        
+        /* Orion Constellation */
+        .orion {
+            width: 200px;
+            height: 150px;
+            top: 40%;
+            left: 60%;
+        }
+        
+        .orion .star:nth-child(1) { top: 0; left: 90px; }
+        .orion .star:nth-child(2) { top: 30px; left: 70px; }
+        .orion .star:nth-child(3) { top: 60px; left: 90px; }
+        .orion .star:nth-child(4) { top: 90px; left: 70px; }
+        .orion .star:nth-child(5) { top: 120px; left: 90px; }
+        .orion .star:nth-child(6) { top: 60px; left: 40px; }
+        .orion .star:nth-child(7) { top: 60px; left: 140px; }
+        
+        /* Cassiopeia Constellation */
+        .cassiopeia {
+            width: 180px;
+            height: 100px;
+            top: 70%;
+            left: 30%;
+        }
+        
+        .cassiopeia .star:nth-child(1) { top: 0; left: 0; }
+        .cassiopeia .star:nth-child(2) { top: 20px; left: 45px; }
+        .cassiopeia .star:nth-child(3) { top: 40px; left: 90px; }
+        .cassiopeia .star:nth-child(4) { top: 20px; left: 135px; }
+        .cassiopeia .star:nth-child(5) { top: 0; left: 180px; }
+        
+        .drifting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: drift 15s linear infinite;
+        }
+        
+        .dark .drifting-star {
+            background: #FFD700;
+        }
+        
+        .btn-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn-active:active {
+            transform: scale(0.95);
+        }
+        
+        .history-item {
+            transition: all 0.3s ease;
+        }
+        
+        .history-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .calculator-container {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .calculator-container {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* FIX: Added overflow-y-auto to calculator container to enable scrolling */
+        .calculator-container {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+        
+        .dark .calculator-container {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .display {
+            font-family: 'Courier New', monospace;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .dark .display {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Unique heading font */
+        .calculator-heading {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .dark .calculator-heading {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        /* Function key highlighting */
+        .function-key {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            padding: 1px 4px;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        
+        .dark .function-key {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Test result styling */
+        .test-result {
+            font-size: 0.9rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+        }
+        
+        .test-pass {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        
+        .test-fail {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        /* FIX: Added min-height to body to ensure scrolling when content overflows */
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* FIX: Added overflow-y-auto to the main container to enable scrolling */
+        .container {
+            min-height: 100vh;
+            overflow-y: auto;
+        }
