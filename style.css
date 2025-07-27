@@ -162,15 +162,14 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .display {
-            font-family: 'Courier New', monospace;
-            font-size: 2.5rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        
-        .dark .display {
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
+
+
+
+
+body.dark .display {
+  color: #fff !important;  /* White in dark mode */
+}
+
         
         /* Unique heading font */
         .calculator-heading {
@@ -234,3 +233,18 @@
             min-height: 100vh;
             overflow-y: auto;
         }
+  .display {
+  font-family: 'Courier New', monospace;
+  font-size: 2.5rem;
+  color: #000; /* Light mode text */
+  text-shadow: none;
+}
+
+/* Force white text in dark mode */
+.dark .display {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+
+
